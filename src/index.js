@@ -8,10 +8,12 @@ app.use(express.json());
 
 const repositories = [];
 
+// Get all repositories
 app.get("/repositories", (request, response) => {
   return response.json(repositories);
 });
 
+// Create repositoy
 app.post("/repositories", (request, response) => {
   const { title, url, techs } = request.body
 
@@ -28,6 +30,7 @@ app.post("/repositories", (request, response) => {
   return response.status(201).json(repository);
 });
 
+// Update repository
 app.put("/repositories/:id", (request, response) => {
   const { id } = request.params;
   const { title, url, techs } = request.body;
@@ -45,6 +48,7 @@ app.put("/repositories/:id", (request, response) => {
   return response.json(repository);
 });
 
+// Delete repository
 app.delete("/repositories/:id", (request, response) => {
   const { id } = request.params;
 
@@ -59,6 +63,7 @@ app.delete("/repositories/:id", (request, response) => {
   return response.status(204).send();
 });
 
+// Create like increment
 app.post("/repositories/:id/like", (request, response) => {
   const { id } = request.params;
 
